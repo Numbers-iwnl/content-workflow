@@ -1,0 +1,215 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+/*
+ * Identidade visual: preto, prata e verde,
+ * com o acabamento sofisticado das páginas de venda.
+ * Verdes tirados do site example.com (#5E8F72, #58B982, #446E56).
+ * Tipografia: IvyPresto Display (títulos) + Neue Haas Grotesk (texto),
+ * via Adobe Fonts (kit wbc3blt).
+ */
+@theme {
+    --font-serif: 'ivypresto-display', Georgia, 'Times New Roman', serif;
+    --font-sans: 'neue-haas-grotesk-text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-display: 'neue-haas-grotesk-display', 'neue-haas-grotesk-text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+    /* preto */
+    --color-carbon: #0e100f;
+    --color-carbon-2: #151816;
+    --color-carbon-3: #1d211e;
+    --color-grafite: #1a1d1b;
+    --color-grafite-lt: #2d332f;
+
+    /* verde principal */
+    --color-verde: #5e8f72;
+    --color-verde-lt: #58b982;
+    --color-verde-dk: #446e56;
+
+    /* prata */
+    --color-prata-lt: #e9ebec;
+    --color-prata: #a9afb4;
+    --color-prata-dk: #7c8389;
+
+    /* neutros da área clara */
+    --color-paper: #f4f5f4;
+    --color-paper-2: #e9ece9;
+    --color-silver: #d3d8d5;
+    --color-mist: #b5bcb8;
+    --color-slate: #4d5550;
+    --color-ink: #181818;
+
+    --radius-card: 16px;
+}
+
+:root {
+    --grad-verde: linear-gradient(100deg, #446e56 0%, #5e8f72 45%, #58b982 100%);
+    --grad-prata: linear-gradient(100deg, #8e959a 0%, #e9ebec 50%, #a9afb4 100%);
+}
+
+[x-cloak] {
+    display: none !important;
+}
+
+html {
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-feature-settings: 'kern', 'liga';
+}
+
+/* ---------- tipografia ---------- */
+
+@utility eyebrow {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+@utility title-serif {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+}
+
+/* ---------- botões (maiúsculas espaçadas, como nas páginas) ---------- */
+
+@utility btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 12.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.2;
+    padding: 13px 22px;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition:
+        transform 0.25s cubic-bezier(0.2, 0.8, 0.3, 1),
+        box-shadow 0.25s,
+        background-color 0.2s,
+        border-color 0.2s,
+        filter 0.2s;
+    &:active {
+        transform: translateY(1px) scale(0.99);
+    }
+    &:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+    }
+}
+
+@utility btn-grafite {
+    @apply btn bg-grafite text-white hover:bg-grafite-lt;
+    box-shadow: 0 10px 28px -16px rgba(14, 16, 15, 0.55);
+}
+
+@utility btn-verde {
+    @apply btn text-white;
+    background: var(--grad-verde);
+    box-shadow: 0 10px 30px -14px rgba(88, 185, 130, 0.55);
+    &:hover {
+        filter: brightness(1.08);
+        box-shadow: 0 16px 38px -14px rgba(88, 185, 130, 0.65);
+    }
+}
+
+@utility btn-outline {
+    @apply btn border border-silver bg-white text-grafite hover:border-mist hover:bg-paper;
+}
+
+@utility btn-quiet {
+    @apply btn bg-transparent text-slate hover:bg-paper-2 hover:text-ink;
+}
+
+@utility btn-danger {
+    @apply btn border border-red-200 bg-white text-red-700 hover:border-red-300 hover:bg-red-50;
+}
+
+/* Botões no fundo escuro (hub). */
+@utility btn-ghost {
+    @apply btn bg-white/[0.04] text-prata-lt hover:bg-white/[0.08];
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+}
+
+@utility btn-sm {
+    padding: 9px 14px;
+    font-size: 11px;
+    border-radius: 7px;
+}
+
+@utility btn-lg {
+    padding: 17px 30px;
+    font-size: 13.5px;
+}
+
+/* ---------- formulário ---------- */
+
+@utility field {
+    @apply block w-full rounded-[10px] border border-silver bg-white px-3.5 py-3 text-[15px] text-ink placeholder:text-slate/50 transition;
+    &:focus {
+        outline: none;
+        border-color: var(--color-verde);
+        box-shadow: 0 0 0 4px rgb(94 143 114 / 0.16);
+    }
+}
+
+@utility label {
+    @apply eyebrow mb-2 block text-[10.5px] text-slate;
+}
+
+/* ---------- superfícies ---------- */
+
+@utility card {
+    @apply rounded-[var(--radius-card)] border border-paper-2 bg-white;
+    box-shadow: 0 1px 2px rgba(14, 16, 15, 0.04);
+}
+
+/* Cartão no fundo escuro, com o filete dourado das páginas. */
+@utility card-dark {
+    @apply rounded-[var(--radius-card)] border border-white/[0.07];
+    background: linear-gradient(165deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.012));
+}
+
+@utility prata-text {
+    background: var(--grad-prata);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@utility no-scrollbar {
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+/* Entrada suave dos elementos. */
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+}
+
+@utility rise {
+    animation: rise 0.45s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+
+@keyframes sheet-up {
+    from {
+        transform: translateY(100%);
+    }
+}
