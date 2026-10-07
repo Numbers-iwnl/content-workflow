@@ -4,6 +4,13 @@
 
 > 🇧🇷 Fluxo de aprovação de conteúdo para Instagram: cataloga os arquivos finalizados no Google Drive, organiza legendas e status numa planilha e coleta a aprovação das revisoras. Interface em português.
 
+| | |
+|---|---|
+| **Status** | In production |
+| **Users** | The content manager and the two approvers; videomakers just keep uploading to Drive |
+| **Impact** | Replaced an approval spreadsheet the approvers hated opening just to see whether something was waiting for them. They now approve from a link on their phone |
+| **Build time** | 1 day (traditional estimate: 3–4 weeks) |
+
 | Planilha (content lead) | Approval hub (reviewer) |
 |---|---|
 | ![Planilha](docs/planilha.webp) | ![Approval hub](docs/approval.webp) |
@@ -55,6 +62,10 @@ To sync a real Drive, create a Google Cloud service account, save its JSON key a
 ## Stack
 
 Laravel 13 · PHP 8.3 · Blade · Tailwind CSS 4 · Alpine.js · SQLite · Google Drive API · queues & scheduler
+
+## How it was built
+
+Built with AI coding agents (Claude Code and OpenAI Codex) writing the code. My part was designing the workflow with the people who use it, specifying the Drive rules, reviewing the generated code, keeping the 51 tests green and deploying. Traditional estimates are my own ballpark for one developer writing it by hand.
 
 ---
 
